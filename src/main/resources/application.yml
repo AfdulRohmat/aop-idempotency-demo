@@ -3,9 +3,9 @@ spring:
     name: aop-idempotency-demo
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/aop_idempotency_demo
-    username: demo
-    password: demo
+    url: jdbc:postgresql://localhost:5433/aop_idempotency_demo
+    username: postgres
+    password: qwerty
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -17,6 +17,17 @@ spring:
     show-sql: true   # tampilkan query di console
     open-in-view: false
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: transaction-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+    listener:
+      missing-topics-fatal: false
 
 server:
   port: 8080

@@ -4,32 +4,30 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-
+import java.util.UUID;
 
 @Entity
-@Table(
-        name = "idempotency_keys",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "key") // enforce uniqueness
-        }
-)
+@Table(name = "transaction_reports")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class IdempotencyKey {
+public class TransactionReport {
 
     @Id
+    @GeneratedValue
+    private UUID id;
+
     @Column(nullable = false, unique = true)
-    private String key;
+    private String transactionId;
 
     @Column(nullable = false)
-    private String endpoint;
+    private String accountNumber;
 
     @Column(nullable = false)
-    private String requestHash;
+    private Double amount;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime processedAt;
 }
