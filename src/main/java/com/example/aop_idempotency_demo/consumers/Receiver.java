@@ -26,9 +26,9 @@ public class Receiver {
             TransactionMessageDto dto = objectMapper.readValue(message, TransactionMessageDto.class);
             reportService.generateReport(dto);
 
-            log.info("Processed transaction {}", dto.getTransactionId());
+            log.info("=============== Processed transaction {}", dto.getTransactionId());
         } catch (Exception e) {
-            log.error("Failed to parse or process message: {}", e.getMessage());
+            log.error("=============== Failed to parse or process message: {}", e.getMessage());
         }
     }
 }

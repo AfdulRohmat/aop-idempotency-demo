@@ -37,9 +37,9 @@ public class IdempotencyAspect {
             return joinPoint.proceed();
 
         } catch (DataIntegrityViolationException e) {
-            log.warn("Duplicate request detected, key={}", idempotencyAware.getKey());
+            log.warn("=============== Duplicate request detected, key={}", idempotencyAware.getKey());
             // return null bisa diganti throw custom exception biar konsisten dengan GlobalExceptionHandler
-            throw new IllegalStateException("Duplicate request detected for key=" + idempotencyAware.getKey());
+            throw new IllegalStateException("=============== Duplicate request detected for key=" + idempotencyAware.getKey());
         }
     }
 }

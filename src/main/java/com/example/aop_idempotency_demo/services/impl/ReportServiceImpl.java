@@ -21,7 +21,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     @Idempotency
-    public TransactionReport generateReport(TransactionMessageDto message) {
+    public void generateReport(TransactionMessageDto message) {
         log.info("Generating report for transaction {}", message.getTransactionId());
 
         TransactionReport report = TransactionReport.builder()
@@ -31,7 +31,7 @@ public class ReportServiceImpl implements ReportService {
                 .processedAt(LocalDateTime.now())
                 .build();
 
-        return reportRepository.save(report);
+        reportRepository.save(report);
     }
 
     @Override
