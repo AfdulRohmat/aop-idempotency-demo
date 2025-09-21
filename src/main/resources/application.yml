@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: aop-idempotency-demo
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aop_idempotency_demo
+    username: demo
+    password: demo
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # untuk demo bisa pakai update, di production sebaiknya none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true   # tampilkan query di console
+    open-in-view: false
+
+
+server:
+  port: 8080
